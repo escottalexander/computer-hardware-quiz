@@ -1,0 +1,42 @@
+
+* {
+    box-sizing: border-box;
+  }
+  body {
+    font-family: 'Roboto', sans-serif;
+  }
+  main {
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .app {
+    margin:50px;
+    text-align: center;
+    
+  }
+  
+  .answers {
+    text-align: left;
+    width: 600px;
+  }
+  
+  button {
+    margin: 10px;
+    padding: 10px;
+    border-radius: 12.5px;
+  }
+  
+  .strikethrough {
+  text-decoration: line-through;
+  }
+  .bold {
+   font-weight:bold;
+  }
+  
+  @media (min-width: 700px){
+    body {
+      color: blue;
+    }
+  
+  }
