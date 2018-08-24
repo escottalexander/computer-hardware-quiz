@@ -18,7 +18,16 @@
   
   .answers {
     text-align: left;
-    width: 600px;
+    width: 300px;
+}
+ul > .single-answer {
+    display: block;
+}
+form > div {
+    position: relative;
+  }
+  form > div > label {
+    position: absolute;
   }
   
   button {

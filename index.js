@@ -90,9 +90,9 @@ const STORE = {
   
   function generateAnswers(index) {
     let ansArr = STORE.questions[index].answers.map(function (x, i) {
-      return `<input type="radio" role="radio" name="answers" id="ans-${i + 1}" value="${i + 1}">
-                          <label id="ans-${i + 1}-label" for="ans-${i + 1}">${STORE.questions[index].answers[i]}</label>
-                          <br>`
+      return `<div class="single-answer"><input type="radio" role="radio" name="answers" id="ans-${i + 1}" value="${i + 1}">
+                          <label id="ans-${i + 1}-label" for="ans-${i + 1}">${STORE.questions[index].answers[i]}</label></div>
+                          `
     });
     return ansArr.join("");
   }
@@ -157,11 +157,8 @@ const STORE = {
           </header>
           <div class="final-results">
               <h2>Let's see how you did.</h2>
-        <br>
         <h3>You got <span class="js-correct-questions">${STORE.correctCounter}</span> out of 10 correct.</h3>
-        <br>
         <h3 class="js-final-statement">${STORE.correctCounter === 10 ? "Congratulations! You are a computer genius!" : STORE.correctCounter > 7 ? "Thatsa Fantastic!" : "You need work before you will be a computer genius."}</h3>
-        <br>
         <h3 class="question-reset">Would you  like to try the quiz again?</h3>
         <button id="reset-quiz" type="reset">Reset Quiz</button>
           </div>`);
