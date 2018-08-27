@@ -83,10 +83,10 @@ function initialLoad() {
     <header role="banner">
               <h1 class="quiz-name">Welcome to the Computer Hardware Quiz!</h1>
           </header>
-          <div class="start-page">
+          <section role="region" class="start-page">
               <h2>Lets see how much you know about computers!</h2>
         <button id="start-quiz">Start Quiz</button>
-          </div>
+          </section>
           `);
 }
 
@@ -111,25 +111,25 @@ function loadQuestion(index) {
               <form action="none">
           <fieldset>
                   <legend class="question">${STORE.questions[index].question}</legend>
-                  ${STORE.questions[index].questionImage !== false ? `<div class="quiz-image"><img role="presentation" alt="Image of a mysterious computer part"src="${STORE.questions[index].questionImage}" /></div>` : ``}
-                  <div class="js-feedback">
+                  ${STORE.questions[index].questionImage !== false ? `<section role="presentation" class="quiz-image"><img role="presentation" alt="Image of a mysterious computer part"src="${STORE.questions[index].questionImage}" /></section>` : ``}
+                  <section role="status" class="js-feedback">
                   <h3 class="hidden">placeholder</h3>
-                  </div>    
+                  </section>    
                   <ul class="answers" role="radiogroup">
                           ${generateAnswers(index)}
                       </ul>
                   </fieldset>
-          <div class="js-button">
+          <section role="region" class="js-button">
                   <button id="submit" type="submit">Check Answer</button>
-          </div>
+          </section>
               </form>
         <h2>Correct: <span class="js-questions-correct">${STORE.correctCounter}</span></h2><h2>Incorrect: <span class="js-questions-incorrect">${STORE.incorrectCounter}</span> </h2>
           `);
 }
 
 function generateAnswers(index) {
-  let ansArr = STORE.questions[index].answers.map((x, i) => `<div class="single-answer"><input type="radio" role="radio" name="answers" id="ans-${i + 1}" value="${i + 1}" required ${i === 0 ? 'checked' : ''}>
-                        <label id="ans-${i + 1}-label" for="ans-${i + 1}">${STORE.questions[index].answers[i]}</label></div>`);
+  let ansArr = STORE.questions[index].answers.map((x, i) => `<section role="region" class="single-answer"><input type="radio" role="radio" name="answers" id="ans-${i + 1}" value="${i + 1}" required ${i === 0 ? 'checked' : ''}>
+                        <label id="ans-${i + 1}-label" for="ans-${i + 1}">${STORE.questions[index].answers[i]}</label></section>`);
   return ansArr.join("");
 }
 
@@ -173,13 +173,13 @@ function finalReview() {
     <header role="banner">
               <h1 class="quiz-name">Computer Hardware Quiz</h1>
           </header>
-          <div class="final-results">
+          <section role="region" class="final-results">
               <h2>Let's see how you did.</h2>
         <h3>You got <span class="js-correct-questions">${STORE.correctCounter}</span> out of 10 correct.</h3>
         <h3 class="js-final-statement">${STORE.correctCounter === 10 ? "Congratulations! You are a computer genius!" : STORE.correctCounter > 7 ? "Thatsa Fantastic!" : "You need work before you will be a computer genius."}</h3>
         <h3 class="question-reset">Would you  like to try the quiz again?</h3>
         <button id="reset-quiz" type="reset">Reset Quiz</button>
-          </div>
+          </section>
           `);
 }
 
