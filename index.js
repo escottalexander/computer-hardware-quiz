@@ -1,9 +1,9 @@
 /*jshint esversion: 6 */
-let STORE = {
+const STORE = {
   "currentIndex": 0,
   "correctCounter": 0,
   "incorrectCounter": 0,
-  "selectedAnswer": 0,
+  "selectedAnswer": 1,
   "currentCorrectAnswer": 0,
   "questions": [{
       "questionNumber": "1",
@@ -96,12 +96,12 @@ function startQuiz() {
   STORE.incorrectCounter = 0;
   STORE.currentCorrectAnswer = 0;
   STORE.currentIndex = 0;
-  STORE.selectedAnswer = 0;
+  STORE.selectedAnswer = 1;
   loadQuestion(0);
 }
 
 function loadQuestion(index) {
-  STORE.selectedAnswer = 0;
+  STORE.selectedAnswer = 1;
   STORE.currentCorrectAnswer = STORE.questions[index].correctAnswer;
   $(".app").html(`
           <header role="banner">
@@ -111,7 +111,7 @@ function loadQuestion(index) {
               <form action="none">
           <fieldset>
                   <legend class="question">${STORE.questions[index].question}</legend>
-                  ${STORE.questions[index].questionImage !== false ? `<div class="quiz-image"><img role="presentation" src="${STORE.questions[index].questionImage}" /></div>` : ``}
+                  ${STORE.questions[index].questionImage !== false ? `<div class="quiz-image"><img role="presentation" alt="Image of a mysterious computer part"src="${STORE.questions[index].questionImage}" /></div>` : ``}
                   <div class="js-feedback">
                   <h3 class="hidden">placeholder</h3>
                   </div>    
@@ -128,29 +128,34 @@ function loadQuestion(index) {
 }
 
 function generateAnswers(index) {
-  let ansArr = STORE.questions[index].answers.map((x, i) => `<div class="single-answer"><input type="radio" role="radio" name="answers" id="ans-${i + 1}" value="${i + 1}">
+  let ansArr = STORE.questions[index].answers.map((x, i) => `<div class="single-answer"><input type="radio" role="radio" name="answers" id="ans-${i + 1}" value="${i + 1}" required ${i === 0 ? 'checked' : ''}>
                         <label id="ans-${i + 1}-label" for="ans-${i + 1}">${STORE.questions[index].answers[i]}</label></div>`);
   return ansArr.join("");
 }
 
 function checkAnswer() {
   event.preventDefault();
-  if (STORE.selectedAnswer === 0) {
-    alert("Please select an answer!");
-  } else if (STORE.selectedAnswer === STORE.currentCorrectAnswer) {
-    STORE.correctCounter += 1;
+  if (STORE.selectedAnswer === STORE.currentCorrectAnswer) {
+    correctAnswerFeedback();
+  } else if (STORE.selectedAnswer !== STORE.currentCorrectAnswer) {
+    incorrectAnswerFeedback();
+  }
+}
+
+function correctAnswerFeedback(){
+STORE.correctCounter += 1;
     $('.js-questions-correct').text(STORE.correctCounter);
-    $(`.js-feedback`).html("<h3 class='bold'>CORRECT!</h3>");
+    $(`.js-feedback`).html("<h3 class='bold'>Great job! You are CORRECT!</h3>");
     $(`#ans-${STORE.currentCorrectAnswer}-label`).addClass("bold");
     $(".js-button").html('<button id="next-question" type="next">Next</button>');
-  } else if (STORE.selectedAnswer !== STORE.currentCorrectAnswer) {
-    STORE.incorrectCounter += 1;
+}
+function incorrectAnswerFeedback(){
+STORE.incorrectCounter += 1;
     $('.js-questions-incorrect').text(STORE.incorrectCounter);
-    $(`.js-feedback`).html("<h3 class='bold'>INCORRECT</h3>");
+    $(`.js-feedback`).html(`<h3 class='bold'>Sorry! The correct answer is: ${$(`#ans-${STORE.currentCorrectAnswer}-label`).html()}</h3>`);
     $(`#ans-${STORE.currentCorrectAnswer}-label`).addClass("bold");
     $(`#ans-${STORE.selectedAnswer}-label`).addClass("strikethrough");
     $(".js-button").html('<button id="next-question" type="next">Next</button>');
-  }
 }
 
 function nextQuestion() {
