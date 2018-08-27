@@ -125,6 +125,7 @@ function generateAnswers(index) {
 
 function checkAnswer() {
   event.preventDefault();
+  $("input[type=radio]").attr('disabled', true);
   if (STORE.selectedAnswer === STORE.currentCorrectAnswer) {
     correctAnswerFeedback();
   } else if (STORE.selectedAnswer !== STORE.currentCorrectAnswer) {
