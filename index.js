@@ -118,8 +118,8 @@ function loadQuestion(index) {
 }
 
 function generateAnswers(index) {
-  let ansArr = STORE.questions[index].answers.map((x, i) => `<section role="region" class="single-answer"><input type="radio" role="radio" name="answers" id="ans-${i + 1}" value="${i + 1}" required ${i === 0 ? 'checked' : ''}>
-                        <label id="ans-${i + 1}-label" for="ans-${i + 1}">${STORE.questions[index].answers[i]}</label></section>`);
+  let ansArr = STORE.questions[index].answers.map((x, i) => `<li class="single-answer"><input type="radio" role="radio" name="answers" id="ans-${i + 1}" value="${i + 1}" required ${i === 0 ? 'checked' : ''}>
+                        <label id="ans-${i + 1}-label" for="ans-${i + 1}">${STORE.questions[index].answers[i]}</label></li>`);
   return ansArr.join("");
 }
 
