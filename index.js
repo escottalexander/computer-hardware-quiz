@@ -70,9 +70,7 @@ const STORE = {
 
 function initialLoad() {
   $(".app").html(`
-    <header role="banner">
               <h1 class="quiz-name">Welcome to the Computer Hardware Quiz!</h1>
-          </header>
           <section role="region" class="start-page">
               <h2>Lets see how much you know about computers!</h2>
         <button id="start-quiz">Start Quiz</button>
@@ -94,9 +92,7 @@ function loadQuestion(index) {
   STORE.selectedAnswer = 1;
   STORE.currentCorrectAnswer = STORE.questions[index].correctAnswer;
   $(".app").html(`
-          <header role="banner">
-              <h1 class="quiz-name">Computer Hardware Quiz</h1>
-          </header>
+  <h1 class="quiz-name">Computer Hardware Quiz</h1>
         <h2>Question <span class="js-question-number">${index + 1}</span> of 10</h2>
               <form action="none">
           <fieldset>
@@ -161,9 +157,7 @@ function nextQuestion() {
 
 function finalReview() {
   $(".app").html(`
-    <header role="banner">
               <h1 class="quiz-name">Computer Hardware Quiz</h1>
-          </header>
           <section role="region" class="final-results">
               <h2>Let's see how you did.</h2>
         <h3>You got <span class="js-correct-questions">${STORE.correctCounter}</span> out of 10 correct.</h3>
